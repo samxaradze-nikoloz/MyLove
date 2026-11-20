@@ -1,0 +1,134 @@
+:root {
+  --navy: #0d1b2e;
+  --navy-light: #162a45;
+  --navy-deep: #091422;
+  --brown: #a0714f;
+  --brown-light: #c8956d;
+  --cream: #f3e9dc;
+  --radius: 18px;
+}
+
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(200,149,109,.12), transparent 40%),
+    var(--navy);
+  color: var(--cream);
+  font-family: 'Playfair Display', serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a:focus-visible { outline: 2px solid var(--brown-light); outline-offset: 4px; border-radius: 6px; }
+
+.memory { max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+
+/* ---------- top bar ---------- */
+.back {
+  display: inline-flex; align-items: center; gap: .4rem;
+  color: var(--brown-light); text-decoration: none; font-size: .95rem;
+  padding: .5rem .9rem; border: 1px solid rgba(160,113,79,.45); border-radius: 999px;
+  transition: background .2s, border-color .2s;
+}
+.back:hover { background: rgba(160,113,79,.15); border-color: var(--brown-light); }
+
+/* ---------- header ---------- */
+.memory-head { text-align: center; padding: 2.2rem 0 1.2rem; animation: rise .9s ease both; }
+.badge { font-family: 'Dancing Script', cursive; font-size: clamp(1.7rem, 5vw, 2.2rem); color: var(--brown-light); }
+.memory-head h1 { font-size: clamp(1.8rem, 6vw, 2.7rem); line-height: 1.2; margin-top: .3rem; }
+.divider { display: flex; align-items: center; gap: .8rem; justify-content: center; margin-top: 1.2rem; color: var(--brown-light); }
+.divider::before, .divider::after { content: ""; width: 60px; height: 1px; background: linear-gradient(90deg, transparent, var(--brown)); }
+.divider::after { transform: scaleX(-1); }
+
+/* ---------- main photo ---------- */
+.photo-frame {
+  margin: 1.2rem 0 2rem; padding: .6rem;
+  background: linear-gradient(160deg, var(--navy-light), #12233a);
+  border: 1px solid rgba(160,113,79,.5); border-radius: 22px;
+  box-shadow: 0 18px 44px rgba(0,0,0,.5);
+  animation: rise .9s .15s ease both;
+}
+.photo-frame img, .photo-frame video {
+  display: block; width: 100%; max-height: 75vh; object-fit: cover;
+  border-radius: 16px; background: var(--navy-deep);
+}
+.photo-frame figcaption { text-align: center; font-style: italic; opacity: .7; font-size: .9rem; padding: .7rem .5rem .3rem; }
+
+/* ---------- cards ---------- */
+.story, .video-card {
+  background: linear-gradient(160deg, var(--navy-light), #12233a);
+  border: 1px solid rgba(160,113,79,.25); border-left: 4px solid var(--brown);
+  border-radius: var(--radius); padding: 1.6rem 1.5rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35); margin-bottom: 1.5rem;
+  animation: rise .9s .3s ease both;
+}
+.story h2, .video-card h2 { color: var(--brown-light); font-size: 1.15rem; margin-bottom: .8rem; }
+.story p { line-height: 1.85; font-size: 1.08rem; margin-bottom: 1rem; max-width: 62ch; }
+.story p:last-child { margin-bottom: 0; }
+.story p:first-of-type::first-letter {
+  font-size: 2.6em; float: left; line-height: .9; padding: .1em .12em 0 0; color: var(--brown-light);
+}
+
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; margin-bottom: 1.5rem; animation: rise .9s .4s ease both; }
+.fact {
+  background: var(--navy-light); border: 1px solid rgba(160,113,79,.4); border-radius: 14px;
+  padding: 1rem .6rem; text-align: center;
+}
+.fact small { display: block; opacity: .6; font-size: .8rem; margin-bottom: .3rem; }
+.fact strong { color: var(--brown-light); font-size: 1rem; font-weight: 500; }
+
+.video-card video { width: 100%; border-radius: 14px; border: 2px solid var(--brown); }
+
+.quote {
+  text-align: center; font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.5rem, 5vw, 2rem); color: var(--brown-light);
+  padding: 1.2rem .5rem; margin-bottom: 1.5rem;
+}
+
+/* ---------- prev / next ---------- */
+.pager { display: flex; gap: .8rem; margin-top: 2.2rem; }
+.pager a {
+  flex: 1; display: flex; flex-direction: column; gap: .15rem;
+  background: var(--navy-light); border: 1px solid rgba(160,113,79,.4); border-radius: 14px;
+  padding: .9rem 1.1rem; color: var(--cream); text-decoration: none;
+  transition: transform .25s, border-color .25s, background .25s;
+}
+.pager a:hover { transform: translateY(-3px); border-color: var(--brown-light); background: #1a3050; }
+.pager small { color: var(--brown-light); font-size: .8rem; font-style: italic; }
+.pager .next { text-align: right; }
+.pager .spacer { flex: 1; }
+
+footer { text-align: center; padding: 2rem 1rem 1rem; font-size: .85rem; opacity: .45; font-style: italic; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+
+@media (max-width: 520px) {
+  .facts { grid-template-columns: 1fr; }
+  .story { padding: 1.3rem 1.1rem; }
+  .pager { flex-direction: column; }
+  .pager .next { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .memory-head, .photo-frame, .story, .facts, .video-card { animation: none; }
+}
+
+/* ---------- photo fallback ---------- */
+.photo-fallback {
+  display: flex; align-items: center; justify-content: center; height: 280px; font-size: 3rem;
+  background: linear-gradient(135deg, var(--brown), var(--navy-light));
+  color: var(--cream); border-radius: 16px;
+}
+
+/* ---------- lightbox (click the main photo) ---------- */
+.photo-frame img { cursor: zoom-in; }
+.lightbox {
+  position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
+  background: rgba(9,20,34,.96); padding: 1rem; cursor: zoom-out; animation: fade .25s ease both;
+}
+.lightbox img { max-width: 100%; max-height: 100%; border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+@keyframes fade { from { opacity: 0; } }
